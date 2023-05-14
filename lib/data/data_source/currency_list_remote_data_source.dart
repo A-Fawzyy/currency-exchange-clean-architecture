@@ -20,7 +20,7 @@ class CurrencyListRemoteDataSource implements BaseCurrencyListDataSource {
         ApiConstants.currencyListPath,
       );
       final currencyList =
-      CurrencyListModel.fromJson(response as Map<String, dynamic>);
+      CurrencyListModel.fromJson(response.data as Map<String, dynamic>);
       return currencyList;
 
   }
