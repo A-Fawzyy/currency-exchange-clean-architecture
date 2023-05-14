@@ -14,7 +14,7 @@ dependencies:
     # Caches images to reduce waste
     cached_network_image: ^3.2.3
 
-    # functions that operate on lists and collections
+    # Functions that operate on lists and collections
     collection: ^1.17.1
 
     # Simplifies Equality Comparisons
@@ -35,7 +35,7 @@ dependencies:
     # Providers needed providing blocs
     provider: ^6.0.5
 
-    # hooks to support state management (animations and form validation)
+    # Hooks to support state management (animations and form validation)
     flutter_hooks: ^0.18.6
 
     # Storage of global environment variables
@@ -49,8 +49,8 @@ dependencies:
     # Path_provider is a plugin that provides a platform-specific (Android/iOS) way to access the device's file system.
     path_provider: ^2.0.15
 
-    # routing Library
-    go_router: ^7.0.1
+    # Functional error handling in flutter
+    dartz: ^0.10.1
 
     # The following adds the Cupertino Icons font to your application.
     # Use with the CupertinoIcons class for iOS style icons.
@@ -65,11 +65,14 @@ dev_dependencies:
     # Hive Generator is a generator for Hive.
     hive_generator: ^2.0.0
 
+    # Injectable Generator is a generator for injectable.
     injectable_generator: ^2.1.5
 
+    # Mocktail is a Dart package for creating mocks and stubs.
     mocktail: ^0.3.0
 
-    build_runner: ^2.4.2
+    # Build Runner is a package that provides a concrete way of generating files using Dart code, outside of tools like pub and the Dart VM.
+    build_runner: ^2.4.4
 
 flutter:
     uses-material-design: true
