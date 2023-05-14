@@ -6,7 +6,9 @@ import 'package:currency_exchange/data/mappers/index.dart';
 import 'package:currency_exchange/domain/base_repo/base_currency_convertor_repo.dart';
 import 'package:currency_exchange/domain/entity/index.dart';
 import 'package:dartz/dartz.dart';
+import 'package:injectable/injectable.dart';
 
+@LazySingleton(as: BaseCurrencyConvertorRepo)
 class CurrencyConvertorRepo implements BaseCurrencyConvertorRepo {
   final BaseCurrencyConvertorDataSource dataSource;
   final BaseCurrencyListDataSource remoteCurrencyListDataSource;

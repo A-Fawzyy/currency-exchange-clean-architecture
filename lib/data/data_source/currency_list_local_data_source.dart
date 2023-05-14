@@ -3,6 +3,7 @@
 // import 'package:currency_exchange/data/base_data_source/base_currency_list_data_source.dart';
 // import 'package:currency_exchange/domain/entity/index.dart';
 
+// @LazySingleton()
 // class CurrencyListLocalDataSource extends  BaseCurrencyListDataSource {
 //   final BaseNetworkClient client;
 //

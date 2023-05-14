@@ -2,7 +2,9 @@ import 'package:currency_exchange/core/infrastructure/index.dart';
 import 'package:currency_exchange/data/base_data_source/index.dart';
 import 'package:currency_exchange/data/model/index.dart';
 import 'package:currency_exchange/util/api_constants.dart';
+import 'package:injectable/injectable.dart';
 
+@LazySingleton(as: BaseCurrencyConvertorDataSource)
 class CurrencyConvertorRemoteDataSource implements BaseCurrencyConvertorDataSource {
   final BaseNetworkClient client;
 

@@ -1,13 +1,20 @@
 import 'package:currency_exchange/core/infrastructure/base_network_client.dart';
 import 'package:currency_exchange/util/api_constants.dart';
+import 'package:currency_exchange/util/di_named_keys_constants.dart';
 import 'package:dio/dio.dart';
+import 'package:injectable/injectable.dart';
 
+@LazySingleton(as: BaseNetworkClient)
 class DioClient extends BaseNetworkClient {
   final Dio _dio;
   final String _baseUrl;
   final String _apiKey;
 
-  DioClient(this._dio, this._baseUrl, this._apiKey);
+  DioClient(
+    this._dio,
+    @Named(DINamedKeysConstants.freeCurrencyApiBaseUrlNamedKey) this._baseUrl,
+    @Named(DINamedKeysConstants.freeCurrencyApiKeyNamedKey) this._apiKey,
+  );
 
   @override
   Future<dynamic> get(
