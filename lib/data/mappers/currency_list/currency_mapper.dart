@@ -30,7 +30,7 @@ extension CurrencyModelMapper on CurrencyModel {
 }
 
 extension CurrencyEntityMapper on CurrencyEntity {
-  CurrencyModel toModel() {
+  CurrencyModel toData() {
     return CurrencyModel(
       symbol: symbol,
       name: name,

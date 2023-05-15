@@ -5,7 +5,7 @@ import 'package:currency_exchange/domain/entity/index.dart';
 import 'package:dartz/dartz.dart';
 
 abstract class BaseCurrencyConvertorRepo {
-  Future<Either<Failure, double>> convertCurrency(
+  Future<Either<Failure, CurrencyConversionEntity>> convertCurrency(
     ConvertCurrencyRequestEntity params,
   );
 

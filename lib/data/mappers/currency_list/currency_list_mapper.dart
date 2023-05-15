@@ -11,9 +11,9 @@ extension CurrencyListModelMapper on CurrencyListModel {
 }
 
 extension CurrencyListEntityMapper on CurrencyListEntity {
-  CurrencyListModel toModel() {
+  CurrencyListModel toData() {
     return CurrencyListModel(
-      currencyList: currencyList?.map((entity) => entity.toModel()).toList(),
+      currencyList: currencyList?.map((entity) => entity.toData()).toList(),
     );
   }
 }

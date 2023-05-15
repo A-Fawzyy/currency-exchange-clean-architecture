@@ -13,10 +13,10 @@ extension CurrencyHistoryListModelMapper on CurrencyHistoryListModel {
 }
 
 extension CurreencyHistoryListEntityMapper on CurrencyHistoryListEntity {
-  CurrencyHistoryListModel toModel() {
+  CurrencyHistoryListModel toData() {
     return CurrencyHistoryListModel(
       currencyHistoryList: currencyHistoryList
-          ?.map((entity) => entity.toModel())
+          ?.map((entity) => entity.toData())
           .toList(),
     );
   }

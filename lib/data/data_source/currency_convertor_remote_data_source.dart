@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:currency_exchange/core/infrastructure/index.dart';
 import 'package:currency_exchange/data/base_data_source/index.dart';
 import 'package:currency_exchange/data/model/index.dart';
@@ -11,7 +13,7 @@ class CurrencyConvertorRemoteDataSource implements BaseCurrencyConvertorDataSour
   const CurrencyConvertorRemoteDataSource(this.client);
 
   @override
-  Future<double> convertCurrency(
+  Future<CurrencyConversionModel> convertCurrency(
     ConvertCurrencyRequestModel request,
   ) async {
       final response = await client.get(
@@ -21,9 +23,13 @@ class CurrencyConvertorRemoteDataSource implements BaseCurrencyConvertorDataSour
           ApiQueryParamsKeys.currencies: request.to?.code,
         },
       );
-      final conversionRate = response['data'][request.to?.code] as double;
-      final convertedAmount = (request.amount ?? 0.0) * conversionRate;
-      return convertedAmount;
+      final parsedJson = json.decode(response.toString());
+      final conversionRate = parsedJson['data'][request.to?.code] as double;
+      final result = CurrencyConversionModel(
+        fromAmount: request.amount ?? .0,
+        conversionRate: conversionRate,
+      );
+      return result;
   }
 
   @override

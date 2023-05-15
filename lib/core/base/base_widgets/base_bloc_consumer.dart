@@ -1,13 +1,11 @@
 import 'package:currency_exchange/core/base/base_state.dart';
+import 'package:currency_exchange/core/base/base_widgets/app_error_widget.dart';
 import 'package:currency_exchange/core/base/cubit_status.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import 'app_error_widget.dart';
-
 class BaseBlocConsumer<T extends Cubit<S>, S extends BaseState>
     extends StatelessWidget {
-  final Widget Function(BuildContext context, S state)? builder;
   final void Function(BuildContext context, S state)? listener;
 
   final Widget Function(BuildContext context, S state) onSuccess;
@@ -17,7 +15,6 @@ class BaseBlocConsumer<T extends Cubit<S>, S extends BaseState>
   const BaseBlocConsumer({
     super.key,
     required this.onSuccess,
-    this.builder,
     this.listener,
     this.onFailure,
     this.onLoading,
@@ -26,7 +23,11 @@ class BaseBlocConsumer<T extends Cubit<S>, S extends BaseState>
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<T, S>(
-      listener: (context, state) {},
+      listener: (context, state) {
+        if (listener != null) {
+          listener?.call(context, state);
+        }
+      },
       builder: (context, state) {
         switch (state.status) {
           case CubitStatus.initial:

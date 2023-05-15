@@ -34,12 +34,12 @@ class CurrencyConvertorRepo implements BaseCurrencyConvertorRepo {
   }
 
   @override
-  Future<Either<Failure, double>> convertCurrency(
+  Future<Either<Failure, CurrencyConversionEntity>> convertCurrency(
     ConvertCurrencyRequestEntity params,
   ) async {
     try {
-      final amount = await dataSource.convertCurrency(params.toModel());
-      return Right(amount);
+      final amount = await dataSource.convertCurrency(params.toData());
+      return Right(amount.toDomain());
     } catch (e) {
       return Left(UnexpectedFailure());
     }
@@ -51,7 +51,7 @@ class CurrencyConvertorRepo implements BaseCurrencyConvertorRepo {
   ) async {
     try {
       final response =
-          await dataSource.getHistoryForCurrency(requestEntity.toModel());
+          await dataSource.getHistoryForCurrency(requestEntity.toData());
       return Right(response.toDomain());
     } catch (e) {
       return Left(UnexpectedFailure());

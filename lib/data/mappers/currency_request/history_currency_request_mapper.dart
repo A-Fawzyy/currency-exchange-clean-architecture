@@ -12,10 +12,10 @@ extension HistoryCurrencyRequestModelMapper on HistoryCurrencyRequestModel {
 }
 
 extension HistoryCurrencyRequestEntityMapper on HistoryCurrencyRequestEntity {
-  HistoryCurrencyRequestModel toModel() {
+  HistoryCurrencyRequestModel toData() {
     return HistoryCurrencyRequestModel(
-      from: from?.toModel(),
-      to: to?.toModel(),
+      from: from?.toData(),
+      to: to?.toData(),
     );
   }
 }

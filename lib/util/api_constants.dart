@@ -1,6 +1,6 @@
 class ApiConstants {
   static String flagBaseUrl(String languageCode) =>
-      'https://flagcdn.com/w40/$languageCode.png';
+      'https://flagcdn.com/w20/$languageCode.png';
 
   static const String latestCurrencyPath = 'latest';
 

@@ -2,20 +2,16 @@ part of 'currency_list_cubit.dart';
 
 @immutable
 class CurrencyListState extends BaseState {
-  final CurrencyListEntity? currencies;
+  final List<CurrencyEntity> currencies;
 
   const CurrencyListState({
     super.status = CubitStatus.initial,
     super.failureMessage,
-    this.currencies,
+    this.currencies = const [],
   });
 
-  factory CurrencyListState.initial() => const CurrencyListState(
-        currencies: CurrencyListEntity(),
-      );
-
   CurrencyListState copyWith({
-    CurrencyListEntity? currencies,
+    List<CurrencyEntity>? currencies,
     CubitStatus? status,
     String? failureMessage,
   }) {

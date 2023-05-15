@@ -46,16 +46,5 @@ class CurrencyModel extends Equatable {
       ];
 
   @override
-  String toString() {
-    return '''
-    CurrencyModel{
-    symbol: $symbol,
-    name: $name,
-    symbolNative: $symbolNative,
-    decimalDigits: $decimalDigits,
-    rounding: $rounding,
-    code: $code,
-    namePlural: $namePlural
-    }''';
-  }
+  bool get stringify => true;
 }

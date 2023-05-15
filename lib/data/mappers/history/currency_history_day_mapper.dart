@@ -11,7 +11,7 @@ extension CurrencyHistoryDayModelMapper on CurrencyHistoryDayModel {
 }
 
 extension CurrencyHistoryDayEntityMapper on CurrencyHistoryDayEntity {
-  CurrencyHistoryDayModel toModel() {
+  CurrencyHistoryDayModel toData() {
     return CurrencyHistoryDayModel(
       date: date,
       value: value,

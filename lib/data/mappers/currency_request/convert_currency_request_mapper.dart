@@ -13,10 +13,10 @@ extension ConvertCurrencyRequestModelMapper on ConvertCurrencyRequestModel {
 }
 
 extension ConvertCurrencyRequestEntityMapper on ConvertCurrencyRequestEntity {
-  ConvertCurrencyRequestModel toModel() {
+  ConvertCurrencyRequestModel toData() {
     return ConvertCurrencyRequestModel(
-      from: from?.toModel(),
-      to: to?.toModel(),
+      from: from?.toData(),
+      to: to?.toData(),
       amount: amount,
     );
   }

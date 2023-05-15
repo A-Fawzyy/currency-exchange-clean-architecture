@@ -1,3 +1,5 @@
+import 'package:currency_exchange/util/api_constants.dart';
+import 'package:currency_exchange/util/currency_country_code_mapper.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
 
@@ -20,6 +22,11 @@ class CurrencyEntity extends Equatable {
   final int? rounding;
   final String? code;
   final String? namePlural;
+
+  String get countryCode =>
+      CurrencyCountryCodeMapper.getCountryCode(code ?? '');
+
+  String get flagUrl => ApiConstants.flagBaseUrl(countryCode);
 
   @override
   List<Object?> get props => [
