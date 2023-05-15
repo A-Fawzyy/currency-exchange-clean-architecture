@@ -1,4 +1,5 @@
 import 'package:currency_exchange/data/model/history/currency_history_day_model.dart';
+import 'package:dartz/dartz.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter/cupertino.dart';
 
@@ -15,7 +16,7 @@ class CurrencyHistoryListModel extends Equatable {
       return const CurrencyHistoryListModel(currencyHistoryList: []);
     }
 
-    final data = map['data'] as Map<String, Map<String, dynamic>>;
+    final data = cast<Map<String, dynamic>>(map['data']);
     final list = mapJsonToCurrencyHistoryList(data);
     final mappedList =
         list.map((e) => CurrencyHistoryDayModel.fromJson(e)).toList();
@@ -23,7 +24,7 @@ class CurrencyHistoryListModel extends Equatable {
   }
 
   static List<Map<String, dynamic>> mapJsonToCurrencyHistoryList(
-    Map<String, Map<String, dynamic>> data,
+    Map<String, dynamic> data,
   ) {
     final List<Map<String, dynamic>> currencyHistoryList = [];
 

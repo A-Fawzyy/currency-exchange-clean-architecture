@@ -41,6 +41,9 @@ dependencies:
     # Storage of global environment variables
     flutter_dotenv: ^5.0.2
 
+    # flutter charts for data visualization in dart
+    syncfusion_flutter_charts: ^21.2.4
+
     # Hive is a lightweight and fast NoSQL database for storing data locally on the device.
     hive: ^2.2.3
     # hive_flutter is a plugin that provides integration between Hive and Flutter.

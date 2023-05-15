@@ -5,25 +5,39 @@ import 'package:injectable/injectable.dart';
 
 part 'currency_selection_state.dart';
 
+typedef OnBothCurrenciesSelected = Future<void> Function({
+required CurrencyEntity? fromCurrency,
+required CurrencyEntity? toCurrency,
+});
+
+
 @injectable
 class CurrencySelectionCubit extends Cubit<CurrencySelectionState> {
   CurrencySelectionCubit() : super(const CurrencySelectionState());
 
-  void selectFromCurrency(CurrencyEntity currency) {
+  void selectFromCurrency(
+    CurrencyEntity currency,
+    OnBothCurrenciesSelected onBothCurrenciesSelected,
+  ) {
     _handleCurrencySelection(
       currency,
       selectedCurrency: state.selectedToCurrency,
       onClear: () => state.clearToCurrency(),
       onUpdate: (s) => emit(s.copyWith(selectedFromCurrency: currency)),
+      onBothCurrenciesSelected: onBothCurrenciesSelected,
     );
   }
 
-  void selectToCurrency(CurrencyEntity currency) {
+  void selectToCurrency(
+    CurrencyEntity currency,
+    OnBothCurrenciesSelected onBothCurrenciesSelected,
+  ) {
     _handleCurrencySelection(
       currency,
       selectedCurrency: state.selectedFromCurrency,
       onClear: () => state.clearFromCurrency(),
       onUpdate: (s) => emit(s.copyWith(selectedToCurrency: currency)),
+      onBothCurrenciesSelected: onBothCurrenciesSelected,
     );
   }
 
@@ -32,6 +46,7 @@ class CurrencySelectionCubit extends Cubit<CurrencySelectionState> {
     required CurrencyEntity? selectedCurrency,
     required CurrencySelectionState Function() onClear,
     required Function(CurrencySelectionState) onUpdate,
+    required OnBothCurrenciesSelected onBothCurrenciesSelected,
   }) {
     final shouldSwapCurrencies =
         currency == selectedCurrency && selectedCurrency != null;
@@ -43,6 +58,10 @@ class CurrencySelectionCubit extends Cubit<CurrencySelectionState> {
       _swapCurrencies();
     } else {
       onUpdate(state);
+      onBothCurrenciesSelected(
+        fromCurrency: state.selectedFromCurrency,
+        toCurrency: state.selectedToCurrency,
+      );
     }
   }
 

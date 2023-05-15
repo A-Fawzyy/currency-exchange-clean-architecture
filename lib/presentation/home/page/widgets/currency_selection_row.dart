@@ -1,5 +1,5 @@
 import 'package:currency_exchange/domain/entity/currency_list/index.dart';
-import 'package:currency_exchange/presentation/home/cubits/currency_selection/index.dart';
+import 'package:currency_exchange/presentation/home/cubits/index.dart';
 import 'package:currency_exchange/presentation/home/page/mixins/currency_conversion_mixin.dart';
 import 'package:currency_exchange/presentation/home/page/widgets/index.dart';
 import 'package:flutter/material.dart';
@@ -29,8 +29,7 @@ class CurrencySelectionRow extends StatelessWidget with CurrencyConversionMixin 
         CurrencyPicker(
           selectedCurrency:
           context.watch<CurrencySelectionCubit>().state.selectedToCurrency,
-          onChanged: (value) =>
-              context.read<CurrencySelectionCubit>().selectToCurrency(value),
+          onChanged: (value) => onCurrencyToUpdated(context, value),
         ),
       ],
     );
@@ -38,6 +37,17 @@ class CurrencySelectionRow extends StatelessWidget with CurrencyConversionMixin 
 
   void onCurrencyFromUpdated(BuildContext context, CurrencyEntity value) {
     resetConversionState(context);
-    context.read<CurrencySelectionCubit>().selectFromCurrency(value);
+    final currencySelectionCubit = context.read<CurrencySelectionCubit>();
+    final currencyHistoryCubit = context.read<CurrencyHistoryCubit>();
+
+    currencySelectionCubit.selectFromCurrency(value, currencyHistoryCubit.getCurrencyHistory,);
+  }
+
+  void onCurrencyToUpdated(BuildContext context, CurrencyEntity value) {
+    resetConversionState(context);
+    final currencySelectionCubit = context.read<CurrencySelectionCubit>();
+    final currencyHistoryCubit = context.read<CurrencyHistoryCubit>();
+
+    currencySelectionCubit.selectToCurrency(value, currencyHistoryCubit.getCurrencyHistory,);
   }
 }

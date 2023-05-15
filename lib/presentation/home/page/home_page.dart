@@ -22,7 +22,10 @@ class HomePage extends StatelessWidget {
         ),
         BlocProvider<CurrencyConversionCubit>(
           create: (context) => di(),
-        )
+        ),
+        BlocProvider<CurrencyHistoryCubit>(
+          create: (context) => di(),
+        ),
       ],
       child: SafeArea(
         child: Scaffold(

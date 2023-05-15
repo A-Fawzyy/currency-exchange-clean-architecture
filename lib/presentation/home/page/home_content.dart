@@ -12,53 +12,71 @@ class HomeContent extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BaseBlocConsumer<CurrencyListCubit, CurrencyListState>(
-      onSuccess: (context, state) => Stack(
-        children: [
-          Container(
-            decoration: BoxDecoration(
-              color: AppColors.blue.color,
+    return SingleChildScrollView(
+      child: BaseBlocConsumer<CurrencyListCubit, CurrencyListState>(
+        onSuccess: (context, state) => Stack(
+          children: [
+            Container(
+              decoration: BoxDecoration(
+                color: AppColors.blue.color,
+              ),
+              height: MediaQuery.of(context).size.height * .3,
             ),
-            height: MediaQuery.of(context).size.height * .3,
-          ),
-          Padding(
-            padding: const EdgeInsets.symmetric(vertical: 15, horizontal: 20),
-            child: Column(
-              children: [
-                const SizedBox(
-                  height: 20,
-                ),
-                Row(
-                  children: [
-                    Text(
-                      'Convert any\nCurrency',
-                      textAlign: TextAlign.start,
-                      style:
-                          Theme.of(context).textTheme.headlineSmall?.copyWith(
-                                color: AppColors.white.color,
-                                fontWeight: FontWeight.bold,
-                              ),
+            Padding(
+              padding: const EdgeInsets.symmetric(vertical: 15, horizontal: 20),
+              child: Column(
+                children: [
+                  const SizedBox(
+                    height: 20,
+                  ),
+                  Row(
+                    children: [
+                      Text(
+                        'Convert any\nCurrency',
+                        textAlign: TextAlign.start,
+                        style:
+                            Theme.of(context).textTheme.headlineSmall?.copyWith(
+                                  color: AppColors.white.color,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                      ),
+                    ],
+                  ),
+                  const SizedBox(
+                    height: 35,
+                  ),
+                  const CurrencyConverterCard(),
+                  const SizedBox(
+                    height: 35,
+                  ),
+                  Visibility(
+                    visible: context
+                        .watch<CurrencySelectionCubit>()
+                        .state
+                        .isReadyToConvert,
+                    child: ConvertedAmountWidget(),
+                  ),
+                  const SizedBox(
+                    height: 35,
+                  ),
+                  Visibility(
+                    visible: context
+                        .watch<CurrencySelectionCubit>()
+                        .state
+                        .isReadyToConvert,
+                    child: BaseBlocConsumer<CurrencyHistoryCubit,
+                        CurrencyHistoryState>(
+                      onSuccess: (context, state) =>
+                          CurrencyHistoryCartesianGraph(
+                        dataList: state.currencyHistoryList,
+                      ),
                     ),
-                  ],
-                ),
-                const SizedBox(
-                  height: 35,
-                ),
-                const CurrencyConverterCard(),
-                const SizedBox(
-                  height: 35,
-                ),
-            Visibility(
-              visible: context
-                  .watch<CurrencySelectionCubit>()
-                  .state
-                  .isReadyToConvert,
-                  child: ConvertedAmountWidget(),
-                ),
-              ],
+                  ),
+                ],
+              ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }
