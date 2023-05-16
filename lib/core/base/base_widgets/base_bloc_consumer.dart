@@ -32,10 +32,13 @@ class BaseBlocConsumer<T extends Cubit<S>, S extends BaseState>
         switch (state.status) {
           case CubitStatus.initial:
           case CubitStatus.loading:
-            return onLoading?.call(context, state) ??
-                const Center(
-                  child: CircularProgressIndicator(),
-                );
+            return SizedBox(
+              height: MediaQuery.of(context).size.height ,
+              child: onLoading?.call(context, state) ??
+                  const Center(
+                    child: CircularProgressIndicator(),
+                  ),
+            );
           case CubitStatus.failure:
             return onFailure?.call(context, state) ??
                 AppErrorWidget(message: state.failureMessage);
