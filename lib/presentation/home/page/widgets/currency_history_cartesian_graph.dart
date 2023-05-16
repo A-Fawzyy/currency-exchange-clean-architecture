@@ -1,5 +1,6 @@
 import 'package:currency_exchange/domain/entity/index.dart';
 import 'package:currency_exchange/styles/colors.dart';
+import 'package:currency_exchange/util/index.dart';
 import 'package:flutter/material.dart';
 import 'package:syncfusion_flutter_charts/charts.dart';
 
@@ -39,7 +40,7 @@ class CurrencyHistoryCartesianGraph extends StatelessWidget {
             ),
             padding: const EdgeInsets.all(10),
             child: Text(
-              '${castedData.value}, ${castedData.date}',
+              '${castedData.value?.toStringAsFixed(2)}, ${castedData.date}',
               style: Theme.of(context).textTheme.bodySmall?.copyWith(
                 color: AppColors.white.color,
                 fontWeight: FontWeight.bold,
@@ -51,7 +52,7 @@ class CurrencyHistoryCartesianGraph extends StatelessWidget {
       series: <SplineSeries<CurrencyHistoryDayEntity, String>>[
         SplineSeries<CurrencyHistoryDayEntity, String>(
           dataSource: dataList,
-          xValueMapper: (CurrencyHistoryDayEntity history, _) => history.date,
+          xValueMapper: (CurrencyHistoryDayEntity history, _) => DateUtil.formatDateString(history.date),
           yValueMapper: (CurrencyHistoryDayEntity history, _) => history.value,
         ),
       ],
