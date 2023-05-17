@@ -49,9 +49,6 @@ dependencies:
     # hive_flutter is a plugin that provides integration between Hive and Flutter.
     hive_flutter: ^1.1.0
 
-    # Path_provider is a plugin that provides a platform-specific (Android/iOS) way to access the device's file system.
-    path_provider: ^2.0.15
-
     # Functional error handling in flutter
     dartz: ^0.10.1
 
