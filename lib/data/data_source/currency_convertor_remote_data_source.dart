@@ -3,7 +3,7 @@ import 'dart:convert';
 import 'package:currency_exchange/core/infrastructure/index.dart';
 import 'package:currency_exchange/data/base_data_source/index.dart';
 import 'package:currency_exchange/data/model/index.dart';
-import 'package:currency_exchange/util/api_constants.dart';
+import 'package:currency_exchange/util/constants/api_constants.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:injectable/injectable.dart';

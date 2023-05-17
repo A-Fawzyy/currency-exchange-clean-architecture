@@ -1,16 +1,48 @@
+import 'package:currency_exchange/core/infrastructure/database/index.dart';
+import 'package:currency_exchange/data/base_data_source/index.dart';
+import 'package:currency_exchange/data/model/currency_list/currency_list_model.dart';
+import 'package:currency_exchange/data/model/currency_list/currency_model.dart';
+import 'package:currency_exchange/util/constants/index.dart';
+import 'package:injectable/injectable.dart';
 
-// import 'package:currency_exchange/core/error_handling/result.dart';
-// import 'package:currency_exchange/data/base_data_source/base_currency_list_data_source.dart';
-// import 'package:currency_exchange/domain/entity/index.dart';
+@LazySingleton(as: BaseCurrencyListLocalDataSource)
+class CurrencyListLocalDataSource
+    implements BaseCurrencyListLocalDataSource {
+  final BaseDatabase _dbClient;
 
-// @LazySingleton()
-// class CurrencyListLocalDataSource extends  BaseCurrencyListDataSource {
-//   final BaseNetworkClient client;
-//
-//   const CurrencyListLocalDataSource(this.client);
-//
-//   /// Returns a list of all supported currencies
-//   ///
-//   /// This is to be cached in database and updated every 24 hours
-//   Future<Result<CurrencyListEntity>> getAllSupportedCurrencies();
-// }
+  CurrencyListLocalDataSource(this._dbClient);
+
+  @override
+  Future<CurrencyListModel> getAllSupportedCurrencies() {
+    final list = _dbClient.getAll<CurrencyModel>(
+      tableName: DatabaseConstants.currenciesBoxKey,
+    );
+    if (list == null) {
+      return Future.error(Exception('No data found'));
+    } else {
+      final result = CurrencyListModel(currencyList: list);
+      return Future.value(result);
+    }
+  }
+
+  @override
+  Future<void> saveSupportedCurrencies(
+    CurrencyListModel currencyListModel,
+  ) async {
+    final keys = currencyListModel.currencyList?.map((e) => e.code).toList();
+    await _dbClient.saveAll<CurrencyModel>(
+      tableName: DatabaseConstants.currenciesBoxKey,
+      list: currencyListModel.currencyList,
+      keys: keys,
+    );
+  }
+
+  @override
+  Future<bool> hasCurrencyList() async {
+    final list = _dbClient.getAll<CurrencyModel>(
+      tableName: DatabaseConstants.currenciesBoxKey,
+    );
+
+    return list != null && list.isNotEmpty;
+  }
+}

@@ -1,6 +1,6 @@
 import 'package:currency_exchange/core/infrastructure/network/base_network_client.dart';
-import 'package:currency_exchange/util/api_constants.dart';
-import 'package:currency_exchange/util/di_named_keys_constants.dart';
+import 'package:currency_exchange/util/constants/api_constants.dart';
+import 'package:currency_exchange/util/constants/di_named_keys_constants.dart';
 import 'package:dio/dio.dart';
 import 'package:injectable/injectable.dart';
 

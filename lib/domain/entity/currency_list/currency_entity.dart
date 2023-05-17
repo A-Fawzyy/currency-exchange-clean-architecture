@@ -1,5 +1,4 @@
-import 'package:currency_exchange/util/api_constants.dart';
-import 'package:currency_exchange/util/currency_country_code_mapper.dart';
+import 'package:currency_exchange/util/constants/index.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
 

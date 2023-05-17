@@ -1,7 +1,11 @@
 import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
+import 'package:hive/hive.dart';
+
+part 'currency_model.g.dart';
 
 @immutable
+@HiveType(typeId: 0)
 class CurrencyModel extends Equatable {
   const CurrencyModel({
     this.symbol,
@@ -18,6 +22,7 @@ class CurrencyModel extends Equatable {
   final String? symbolNative;
   final int? decimalDigits;
   final int? rounding;
+  @HiveField(0)
   final String? code;
   final String? namePlural;
 

@@ -1,5 +1,5 @@
-import 'package:currency_exchange/util/di_named_keys_constants.dart';
-import 'package:currency_exchange/util/environment_keys.dart';
+import 'package:currency_exchange/util/constants/di_named_keys_constants.dart';
+import 'package:currency_exchange/util/constants/environment_keys.dart';
 import 'package:dio/dio.dart';
 import 'package:injectable/injectable.dart';
 
