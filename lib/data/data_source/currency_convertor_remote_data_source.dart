@@ -7,7 +7,6 @@ import 'package:currency_exchange/util/constants/api_constants.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:injectable/injectable.dart';
-import 'package:intl/intl.dart';
 
 @LazySingleton(as: BaseCurrencyConvertorDataSource)
 class CurrencyConvertorRemoteDataSource implements BaseCurrencyConvertorDataSource {
@@ -60,12 +59,5 @@ class CurrencyConvertorRemoteDataSource implements BaseCurrencyConvertorDataSour
       debugPrint((e as DioError).response?.data.toString());
       rethrow;
     }
-  }
-
-  String formatDate(DateTime dateTime) {
-    final dateFormatter = DateFormat('yyyy-MM-ddTHH:mm:ss.SSS');
-    final formattedDateTime = dateFormatter.format(dateTime.toUtc());
-    final fullFormattedDateTime = '${formattedDateTime}Z';
-    return fullFormattedDateTime;
   }
 }
