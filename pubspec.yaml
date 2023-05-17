@@ -74,6 +74,9 @@ dev_dependencies:
     # Mocktail is a Dart package for creating mocks and stubs.
     mocktail: ^0.3.0
 
+    # Bloc Test is a package that provides utilities for testing blocs and cubits.
+    bloc_test: ^9.1.1
+
     # Build Runner is a package that provides a concrete way of generating files using Dart code, outside of tools like pub and the Dart VM.
     build_runner: ^2.4.4
 

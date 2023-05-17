@@ -4,7 +4,6 @@ import 'package:currency_exchange/core/infrastructure/index.dart';
 import 'package:currency_exchange/data/base_data_source/index.dart';
 import 'package:currency_exchange/data/model/index.dart';
 import 'package:currency_exchange/util/constants/api_constants.dart';
-import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:injectable/injectable.dart';
 
@@ -56,7 +55,7 @@ class CurrencyConvertorRemoteDataSource implements BaseCurrencyConvertorDataSour
           CurrencyHistoryListModel.fromJson(decodedJson as Map<String, dynamic>);
       return historyList;
     } catch (e) {
-      debugPrint((e as DioError).response?.data.toString());
+      debugPrint(e.toString());
       rethrow;
     }
   }
