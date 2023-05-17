@@ -12,7 +12,8 @@ class ConvertCurrencyRequestEntity extends Equatable {
     this.from,
     this.to,
     this.amount,
-  });
+  }):
+    assert((amount ?? 0) >= 0, 'amount must be greater than 0');
 
   @override
   List<Object?> get props => [
